@@ -6,11 +6,20 @@ const squareStyle = {
 };
 
 export default class Square extends React.Component {
-  render() {
-        return(
-          <button style={squareStyle}>
-            {this.props.value}
-          </button>
-        );
+  constructor(props) {
+    super(props);
+    this.squareClick = this.squareClick.bind(this);
+  }
+  squareClick() {
+    if(this.props.value === "-") {
+      this.props.boardClick(this.props.rowIndex, this.props.columnIndex);
     }
+  }
+  render() {
+    return(
+      <button style={squareStyle} onClick={this.squareClick} className={this.props.value === "-" ? "clickable" : "no_clickable"}>
+        {this.props.value}
+      </button>
+    );
+  }
 }
